@@ -19,7 +19,6 @@ class HttpFileHandler implements HttpHandler {
         try {
             System.out.println("Request: "+httpExchange.getRemoteAddress()+" "+httpExchange.getRequestURI());
             InputStream inputStream = HttpFileHandler.class.getResourceAsStream(httpExchange.getRequestURI().getPath());
-            System.out.println(httpExchange.getRequestURI().getPath());
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             while(inputStream.available()>0) {
                 byteArrayOutputStream.write(inputStream.read());
