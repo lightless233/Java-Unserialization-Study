@@ -11,7 +11,7 @@ I plan to analyze the following security vulnerabilities.
 
 - [x] Spring-tx unserialize vulnerability.
 - [x] Apache Commons Collections unserizlize vulnerability.
-- [ ] JDK7u21 vulnerability.
+- [x] JDK7u21 vulnerability.
 - [ ] JDK8u20 vulnerability.
 - [ ] FastJSON unserialize vulnerability.
 - [ ] Jackson unserialize vulnerability.
